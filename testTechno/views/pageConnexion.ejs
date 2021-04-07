@@ -1,0 +1,43 @@
+<%- include('include/header') -%>
+    </nav>
+    <style>
+        .example-wrapper {
+            margin: 1em auto;
+            max-width: 450px;
+            width: 95%;
+            font: 18px/1.5 sans-serif;
+        }
+
+        .example-wrapper code {
+            background: #F5F5F5;
+            padding: 2px 6px;
+        }
+
+        #connex {
+            background: #30c2e3;
+            border-color: #30c2e3;
+        }
+    </style>
+
+    <div class="example-wrapper">
+
+        <form action="/pageConnexion" method="POST">
+            <div class="input-group input-group-sm mb-3">
+                <label for="login" class="input-group-text">Login</label>
+                <input type="text" class="" name="username">
+            </div>
+            <div class="input-group input-group-sm mb-3">
+                <label for="password" class="input-group-text">Password</label>
+                <input type="text" class="form-contorl" name="password">
+            </div>
+            <div class="input-group input-group-sm mb-3">
+                <button type="submit" class="btn btn-primary">
+                    <i class="floatingInput">Connexion</i>
+                </button>
+            </div>
+        </form>
+
+    </div>
+
+
+    <%- include('include/footer') -%>

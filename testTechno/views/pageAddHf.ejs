@@ -1,0 +1,31 @@
+<%- include('include/headerConnect') -%>
+
+    <form action="/pageAddHF" method="POST">
+        <div class="form-row">
+            <div class="col-md-6 mb-3">
+                <label for="validationCustom01">Libelle</label>
+                <input type="text" class="form-control" name="libelle" required>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label for="validationCustom02">Montant</label>
+                <input type="text" class="form-control" name="montant" required>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label for="validationCustom03">Numéro de facture</label>
+                <input type="text" class="form-control" name="numfacture" required>
+            </div>
+        </div>
+
+
+        <div>
+            <label>Date</label>
+            <div>
+                <input type="date" id="date" value="" min="2018-01-01" max="" name="date">
+            </div>
+        </div>
+        <br>
+        <a href="/pageAcceuil" class="btn btn-secondary"><i>Annuler</i></a>
+        <button id='btnStyle'  class="btn btn-primary" type="submit"><i>Valider</i></button>
+    </form>
+
+    <%- include('include/footer') -%>

@@ -1,0 +1,64 @@
+<%- include('include/headerConnect') -%>
+
+    <div class="card text-center">
+        <div class="card-header">
+            Résumé
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">Frais forfaitisés</h5>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <!--<th scope="col">Date</th>-->
+                        <th scope="col">Libelle</th>
+                        <th scope="col">Quantite</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% forfaitise.forEach(function(uneforfaitise){ %>
+                        <tr>
+                            <td>
+                                <%= uneforfaitise.libelle %>
+                            </td>
+                            <td>
+                                <%= uneforfaitise.quantite %>
+                            </td>
+                        </tr>
+                        <% }); %>
+                </tbody>
+            </table>
+            <h5 class="card-title">Frais hors forfaits</h5>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">Date</th>
+                        <th scope="col">Libelle</th>
+                        <th scope="col">Quantite</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% horsforfait.forEach(function(unhorsforfait){ %>
+                        <tr>
+                            
+                            <td>
+                                <%= moment(unhorsforfait.date).format("DD-MM-YYYY") %>
+                            </td>
+                            
+                            <td>
+                                <%= unhorsforfait.libelle %>
+                            </td>
+                            <td>
+                                <%= unhorsforfait.prix %> €
+                            </td>
+                        </tr>
+                        <% }); %>
+                </tbody>
+            </table>
+        </div>
+        <div class="card-footer text-muted">
+            <%= moment(date).fromNow() %>
+        </div>
+    </div>
+    <br>
+
+    <%- include('include/footer') -%>

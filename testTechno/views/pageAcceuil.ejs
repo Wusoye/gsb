@@ -1,0 +1,87 @@
+<%- include('include/headerConnect') -%>
+
+    <style>
+        .example-wrapper {
+            margin: 1em auto;
+            max-width: 450px;
+            width: 95%;
+            font: 18px/1.5 sans-serif;
+        }
+
+        .example-wrapper code {
+            background: #F5F5F5;
+            padding: 2px 6px;
+        }
+    </style>
+    <!--Frais forfaitises-->
+    <h4>Frais forfaitisés <%= moment(user.fichedefrais.dateDebut).format("MMMM YYYY") %>
+    </h4>
+    <br>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col"><a href="/upForfaitise"><i>Modifier</i></a></th>
+                <th scope="col">Libelle</th>
+                <th scope="col">Quantite</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% forfaitise.forEach(function(uneForfaitise){ %>
+                <tr>
+                    <td>
+
+                    </td>
+                    <td>
+                        <%= uneForfaitise.libelle %>
+                    </td>
+                    <td>
+                        <%= uneForfaitise.quantite %>
+                    </td>
+                </tr>
+                <% }); %>
+        </tbody>
+    </table>
+    <br>
+    <!--Frais hors forfaits-->
+    <h4>Frais hors forfait
+    </h4>
+    <br>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Action</th>
+                <th scope="col">Date</th>
+                <th scope="col">Libelle</th>
+                <th scope="col">Quantite</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% horsForfait.forEach(function(unHorsForfait){ %>
+                <tr>
+                    <td>
+                        <a href="/upHorsforfait/<%- unHorsForfait.idHF -%>"><i>Modifier</i></a>
+                    </td>
+                    <td>
+                        <%= moment(unHorsForfait.date).format("DD-MM-YYYY") %>
+                    </td>
+                    <td>
+                        <%= unHorsForfait.libelle %>
+                    </td>
+                    <td>
+                        <%= unHorsForfait.prix %> €
+                    </td>
+                </tr>
+                <% }); %>
+        </tbody>
+    </table>
+
+
+    <br>
+    <div class="d-flex justify-content-center">
+        <a class="btn btn-outline-secondary" href="/pageAddHf">Ajouter un frais hors forfait</a>
+    </div>
+    <br>
+
+
+
+    <%- include('include/footer') -%>
