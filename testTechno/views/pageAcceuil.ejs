@@ -1,18 +1,5 @@
 <%- include('include/headerConnect') -%>
 
-    <style>
-        .example-wrapper {
-            margin: 1em auto;
-            max-width: 450px;
-            width: 95%;
-            font: 18px/1.5 sans-serif;
-        }
-
-        .example-wrapper code {
-            background: #F5F5F5;
-            padding: 2px 6px;
-        }
-    </style>
     <!--Frais forfaitises-->
     <h4>Frais forfaitisés <%= moment(user.fichedefrais.dateDebut).format("MMMM YYYY") %>
     </h4>
@@ -59,7 +46,7 @@
             <% horsForfait.forEach(function(unHorsForfait){ %>
                 <tr>
                     <td>
-                        <a href="/upHorsforfait/<%- unHorsForfait.idHF -%>"><i>Modifier</i></a>
+                        <a href="/modifierHorsforfait/<%- unHorsForfait._id -%>"><i>Modifier</i></a>
                     </td>
                     <td>
                         <%= moment(unHorsForfait.date).format("DD-MM-YYYY") %>

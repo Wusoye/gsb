@@ -1,0 +1,49 @@
+<%- include('include/headerConnect') -%>
+
+    <form action="#" method="POST">
+        <h4>Modification du frais hors forfait</h4>
+        <br>
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label for="modifeLibelle">Libelle</label>
+                <input type="text" class="form-control" name="libelle" value='<%- horsforfaits.libelle %>'>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label for="modifePrix">Prix</label>
+                <input type="text" class="form-control" name="prix" value='<%- horsforfaits.prix %>'>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label for="modifeNumFacture">Numéro de facture</label>
+                <input type="text" class="form-control" name="numFacture" value='<%- horsforfaits.numFacture %>'>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label for="modifeDate">Date</label>
+                <input type="date" class="form-control" name="date"
+                    value="<%= moment(horsforfaits.date).format('YYYY-MM-DD') %>">
+            </div>
+        </div>
+        <div class="row justify-content-md-center">
+            <div class="col-md-1">
+                <button type="button" class="btn btn-primary btn-sm">Valider</button>
+            </div>
+        </div>
+    </form>
+    <br>
+    <form action="#" method="POST">
+        <h5>Voulez vous supprimer ce frais ?</h5>
+        <br>
+        <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" value="" onclick="confirme()" id="checkSup">
+            <label class="form-check-label" for="checkSup">
+                Oui je le veux
+            </label>
+        </div>
+        <br>
+        <button type='button' class='btn btn-danger btn-sm' id="btnSup" disabled="false">Confirmer</button>
+        <!-- Script jvs dans le footer-->
+
+    </form>
+
+    <%- include('include/footer') -%>

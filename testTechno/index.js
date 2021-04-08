@@ -25,7 +25,7 @@ if (app.get('env') === 'production') {
 
 app.use(session({
     secret: "cats",
-    cookie: { _expires: 50 * 60 * 60000 }
+    cookie: { _expires: 50 * 60 * 60000 } //50 min
 }));
 
 app.use(passport.initialize());
@@ -38,7 +38,7 @@ client.connect(function (err) {
     passport.use(new LocalStrategy(
         function (username, password, done) {
             db.collection("visiteur").findOne({ login: username }, function (err, user) {
-                console.log(user)
+
                 if (err) { return done(err); }
                 if (!user) {
                     return done(null, false, { message: 'Incorrect username.' });
@@ -63,8 +63,8 @@ client.connect(function (err) {
 
 
     app.get('/', (req, res) => {
-        console.log('ok')
-    })
+        res.redirect('/pageConnexion')
+    });
 
     app.get('/pageConnexion', (req, res) => {
         res.render('pageConnexion')
@@ -78,7 +78,7 @@ client.connect(function (err) {
     );
 
     app.get('/pageAcceuil', (req, res) => {
-        console.log(req.session.passport.user)
+
         var User = req.session.passport.user;
         var fichedefrais = User.fichedefrais[0];
         res.render('pageAcceuil', {
@@ -114,7 +114,7 @@ client.connect(function (err) {
     })
 
     app.post('/pageAddHf', (req, res) => {
-        //console.log(req.body)
+
         var User = req.session.passport.user;
         var fichedefrais = User.fichedefrais[0];
         db.collection('visiteur').updateOne(
@@ -122,16 +122,16 @@ client.connect(function (err) {
                 "_id": ObjectId(User._id),
                 "fichedefrais._id": ObjectId(fichedefrais._id)
             }, {
-                $push: {
-                    "fichedefrais.$.horsforfait":
-                    {
-                        "_id": ObjectId(),
-                        "libelle": req.body.libelle,
-                        "prix": parseFloat(req.body.montant),
-                        "numFacture": req.body.numfacture,
-                        "date": new Date(moment(req.body.date).format())
-                    }
+            $push: {
+                "fichedefrais.$.horsforfait":
+                {
+                    "_id": ObjectId(),
+                    "libelle": req.body.libelle,
+                    "prix": parseFloat(req.body.montant),
+                    "numFacture": req.body.numfacture,
+                    "date": new Date(moment(req.body.date).format())
                 }
+            }
         }, function (err) {
             if (err) throw err;
             else {
@@ -142,6 +142,17 @@ client.connect(function (err) {
                 })
             }
         })
+    })
+});
+
+app.get('/modifierHorsforfait/:id', (req, res) => {
+    var User = req.session.passport.user;
+    var horsforfaits = User.fichedefrais[0].horsforfait;
+    horsforfaits.forEach(function (unHorsforfaits) {
+        if (unHorsforfaits._id == req.params.id) {
+            res.render('pageModifeHf', { horsforfaits: unHorsforfaits })
+        }
+        //else { res.redirect('/pageAcceuil') } //Ne marche pas à voir
     })
 });
 
