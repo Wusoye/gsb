@@ -1,5 +1,7 @@
 <%- include('include/headerConnect') -%>
 
+    <h4>Ajouter un frais hors forfait</h4>
+    <br>
     <form action="/pageAddHF" method="POST">
         <div class="row">
             <div class="col-md-6 mb-3">
@@ -10,22 +12,28 @@
                 <label for="validationCustom02">Montant</label>
                 <input type="text" class="form-control" name="montant" required>
             </div>
+        </div>
+        <div class="row">
             <div class="col-md-6 mb-3">
                 <label for="validationCustom03">Numéro de facture</label>
                 <input type="text" class="form-control" name="numfacture" required>
             </div>
-        </div>
-
-
-        <div>
-            <label>Date</label>
-            <div>
-                <input type="date" id="date" value="" min="2018-01-01" max="" name="date" class="form-control" >
+            <div class="col-md-6 mb-3">
+                <label>Date</label>
+                <div>
+                    <input type="date" id="date" value="" min="2018-01-01" max="" name="date" class="form-control">
+                </div>
             </div>
         </div>
         <br>
-        <a href="/pageAcceuil" class="btn btn-secondary"><i>Annuler</i></a>
-        <button id='btnStyle'  class="btn btn-primary" type="submit"><i>Valider</i></button>
+        <div class="row justify-content-md-center">
+            <div class="col-md-1">
+                <a href="/pageAcceuil" class="btn btn-secondary btn-sm"><i>Annuler</i></a>
+            </div>
+            <div class="col-md-1">
+                <button id='btnStyle' class="btn btn-primary btn-sm" type="submit"><i>Valider</i></button>
+            </div>
+        </div>
     </form>
 
     <%- include('include/footer') -%>

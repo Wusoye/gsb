@@ -16,6 +16,8 @@ var passport = require('passport'), LocalStrategy = require('passport-local').St
 
 var session = require("express-session");
 const { ObjectId } = require('bson');
+const { db } = require('./config/bd');
+//const parseJSON = require('jquery')(require("jsdom").jsdom().parentWindow);
 //app.use(express.static("public"));
 
 if (app.get('env') === 'production') {
@@ -143,16 +145,78 @@ client.connect(function (err) {
             }
         })
     })
-});
 
-app.get('/modifierHorsforfait/:id', (req, res) => {
-    var User = req.session.passport.user;
-    var horsforfaits = User.fichedefrais[0].horsforfait;
-    horsforfaits.forEach(function (unHorsforfaits) {
-        if (unHorsforfaits._id == req.params.id) {
-            res.render('pageModifeHf', { horsforfaits: unHorsforfaits })
+
+    app.get('/modifierHorsforfait/:id', (req, res) => {
+        var User = req.session.passport.user;
+        var horsforfaits = User.fichedefrais[0].horsforfait;
+        horsforfaits.forEach(function (unHorsforfaits) {
+            if (unHorsforfaits._id == req.params.id) {
+                res.render('pageModifeHf', { horsforfaits: unHorsforfaits })
+            }
+            //else { res.redirect('/pageAcceuil') } //Ne marche pas à voir
+        })
+    });
+
+    app.post('/modifierHorsforfait', (req, res) => {
+
+        var User = req.session.passport.user;
+        var fichedefrais = User.fichedefrais[0];
+
+        db.collection("visiteur").updateOne({
+            "_id": ObjectId(User._id),
+            "fichedefrais._id": ObjectId(fichedefrais._id)
+        }, {
+            $set: {
+                "fichedefrais.$.horsforfait.$[elem]": {
+                    "_id": ObjectId(req.body.id),
+                    "libelle": req.body.libelle,
+                    "prix": parseFloat(req.body.prix),
+                    "numFacture": req.body.numFacture,
+                    "date": new Date(moment(req.body.date).format())
+                }
+            }
+        }, {
+            "arrayFilters": [{ "elem._id": ObjectId(req.body.id) }], "multi": true
         }
-        //else { res.redirect('/pageAcceuil') } //Ne marche pas à voir
+            , function (err) {
+                if (err) throw err;
+                else {
+                    db.collection('visiteur').findOne({ _id: ObjectId(User._id) }, function (err, user) {
+                        if (err) throw err;
+                        req.session.passport.user = user
+                        res.redirect('/pageAcceuil')
+                    })
+                }
+            })
+
+    })
+
+    app.post('/supHorsforfait', (req, res) => {
+        var User = req.session.passport.user;
+        var fichedefrais = User.fichedefrais[0];
+        
+        db.collection('visiteur').updateOne({
+            _id: ObjectId(User._id),
+            "fichedefrais._id": ObjectId(fichedefrais._id)
+        },
+            {
+                $pull: {
+                    "fichedefrais.$.horsforfait":
+                    {
+                        "_id": ObjectId(req.body.supHf)
+                    }
+                }
+            }, function (err) {
+                if (err) throw err;
+                else {
+                    db.collection('visiteur').findOne({ _id: ObjectId(User._id) }, function (err, user) {
+                        if (err) throw err;
+                        req.session.passport.user = user
+                        res.redirect('/pageAcceuil')
+                    })
+                }
+            })
     })
 });
 

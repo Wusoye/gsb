@@ -1,6 +1,6 @@
 <%- include('include/headerConnect') -%>
 
-    <form action="#" method="POST">
+    <form action="/modifierHorsforfait" method="POST">
         <h4>Modification du frais hors forfait</h4>
         <br>
         <div class="row">
@@ -26,12 +26,12 @@
         </div>
         <div class="row justify-content-md-center">
             <div class="col-md-1">
-                <button type="button" class="btn btn-primary btn-sm">Valider</button>
+                <button type="submit" class="btn btn-primary btn-sm" name="id" value="<%- horsforfaits._id %>">Valider</button>
             </div>
         </div>
     </form>
     <br>
-    <form action="#" method="POST">
+    <form action="/supHorsforfait" method="POST">
         <h5>Voulez vous supprimer ce frais ?</h5>
         <br>
         <div class="form-check form-switch">
@@ -41,7 +41,7 @@
             </label>
         </div>
         <br>
-        <button type='button' class='btn btn-danger btn-sm' id="btnSup" disabled="false">Confirmer</button>
+        <button type="submit" class='btn btn-danger btn-sm' id="btnSup" name="supHf" value="<%= horsforfaits._id %>" disabled="false">Confirmer</button>
         <!-- Script jvs dans le footer-->
 
     </form>
