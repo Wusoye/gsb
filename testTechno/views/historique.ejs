@@ -1,10 +1,10 @@
 <%- include('include/headerConnect') -%>
 
-<div class="d-flex justify-content-center">
+  <div class="d-flex justify-content-center">
     <h4>Historique de vos fiches</h4>
-</div>
+  </div>
 
-<table class="table">
+  <table class="table">
     <thead>
       <tr>
         <th scope="col">Date</th>
@@ -13,14 +13,18 @@
       </tr>
     </thead>
     <tbody>
-    <% fichedefrais.forEach(function(laFichedefrais){ %>
-      <tr>
-        <td><%= moment(laFichedefrais.dateDebut).format("MMMM YYYY") %></td>
-        <td><%= laFichedefrais.etat %></td>
-        <td><a href="/pageDetail/<%- laFichedefrais._id -%>"><i>Détail</i> </a></td>
-      </tr>
-      <% }); %>
+      <% fichedefrais.forEach(function(laFichedefrais){ %>
+        <tr>
+          <td>
+            <%= moment(laFichedefrais.dateDebut).format("MMMM YYYY") %>
+          </td>
+          <td>
+            <%= laFichedefrais.etat %>
+          </td>
+          <td><a href="/pageDetail/<%- laFichedefrais._id -%>"><i>Détail</i> </a></td>
+        </tr>
+        <% }); %>
     </tbody>
   </table>
 
-<%- include('include/footer') -%>
+  <%- include('include/footer') -%>

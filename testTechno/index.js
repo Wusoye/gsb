@@ -33,11 +33,13 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
+//-> Déclaratin des vars
+
 client.connect(function (err) {
     const db = client.db("gsbTest");
     if (err) throw err;
 
-    passport.use(new LocalStrategy(
+    passport.use(new LocalStrategy( // Fonction d'authentification
         function (username, password, done) {
             db.collection("visiteur").findOne({ login: username }, function (err, user) {
 
@@ -52,11 +54,11 @@ client.connect(function (err) {
             });
         }
     ));
-    passport.serializeUser(function (user, done) {
+    passport.serializeUser(function (user, done) { //initialise l'objet (utilisateur) dans la session
         done(null, user);
     });
 
-    passport.deserializeUser(function (user, done) {
+    passport.deserializeUser(function (user, done) { // dé-initialise l'objet (utilisateur) dans la session
         done(null, user);
     });
 
@@ -81,8 +83,8 @@ client.connect(function (err) {
 
     app.get('/pageAcceuil', (req, res) => {
 
-        var User = req.session.passport.user;
-        var fichedefrais = User.fichedefrais[0];
+        var User = req.session.passport.user; // pour que ce soit plus propre
+        var fichedefrais = User.fichedefrais[0]; // pour que ce soit plus propre
         res.render('pageAcceuil', {
             user: User,
             forfaitise: fichedefrais.forfaitise,
@@ -100,7 +102,7 @@ client.connect(function (err) {
         var User = req.session.passport.user;
         var fichedefrais = User.fichedefrais;
 
-        fichedefrais.forEach(function (unefiche) {
+        fichedefrais.forEach(function (unefiche) { //On cherche la fiche de frais qui correspond a celle voulue dans l'historique
             if (unefiche._id == req.params.id) {
                 res.render('pageDetail', {
                     date: unefiche.dateDebut,
@@ -119,7 +121,7 @@ client.connect(function (err) {
 
         var User = req.session.passport.user;
         var fichedefrais = User.fichedefrais[0];
-        db.collection('visiteur').updateOne(
+        db.collection('visiteur').updateOne( // ajout d'un frais hf pour l'utilisateur
             {
                 "_id": ObjectId(User._id),
                 "fichedefrais._id": ObjectId(fichedefrais._id)
@@ -136,7 +138,7 @@ client.connect(function (err) {
             }
         }, function (err) {
             if (err) throw err;
-            else {
+            else { //puis on actualise le user pour avoir toutes les nouvelles données 
                 db.collection('visiteur').findOne({ _id: ObjectId(User._id) }, function (err, user) {
                     if (err) throw err;
                     req.session.passport.user = user
@@ -150,7 +152,7 @@ client.connect(function (err) {
     app.get('/modifierHorsforfait/:id', (req, res) => {
         var User = req.session.passport.user;
         var horsforfaits = User.fichedefrais[0].horsforfait;
-        horsforfaits.forEach(function (unHorsforfaits) {
+        horsforfaits.forEach(function (unHorsforfaits) { // On cherche le hf sélectionner puis on récup ses infos via la session
             if (unHorsforfaits._id == req.params.id) {
                 res.render('pageModifeHf', { horsforfaits: unHorsforfaits })
             }
@@ -163,7 +165,7 @@ client.connect(function (err) {
         var User = req.session.passport.user;
         var fichedefrais = User.fichedefrais[0];
 
-        db.collection("visiteur").updateOne({
+        db.collection("visiteur").updateOne({ //On modifie le frais hf
             "_id": ObjectId(User._id),
             "fichedefrais._id": ObjectId(fichedefrais._id)
         }, {
@@ -181,7 +183,7 @@ client.connect(function (err) {
         }
             , function (err) {
                 if (err) throw err;
-                else {
+                else { // On actualise le user session
                     db.collection('visiteur').findOne({ _id: ObjectId(User._id) }, function (err, user) {
                         if (err) throw err;
                         req.session.passport.user = user
@@ -195,8 +197,8 @@ client.connect(function (err) {
     app.post('/supHorsforfait', (req, res) => {
         var User = req.session.passport.user;
         var fichedefrais = User.fichedefrais[0];
-        
-        db.collection('visiteur').updateOne({
+
+        db.collection('visiteur').updateOne({ // Supression du frais hf 
             _id: ObjectId(User._id),
             "fichedefrais._id": ObjectId(fichedefrais._id)
         },
@@ -209,7 +211,7 @@ client.connect(function (err) {
                 }
             }, function (err) {
                 if (err) throw err;
-                else {
+                else { // On actualise le user session (pourquoi pas faire un function pour éviter la redondance)
                     db.collection('visiteur').findOne({ _id: ObjectId(User._id) }, function (err, user) {
                         if (err) throw err;
                         req.session.passport.user = user
