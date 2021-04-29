@@ -1,0 +1,107 @@
+{
+  "_id": "ObjectId(\"606d66d00263322294d5e744\")",
+  "nom": "ZEMMOUR",
+  "prnom": "Eric",
+  "login": "ezemmour",
+  "password": "oof",
+  "tel": "06 06 06 06 06",
+  "mail": "eric.zemmour@gmail.com",
+  "adresse": "32 rue du Bled",
+  "ville": "Paris",
+  "cp": "75000",
+  "fichedefrais": [
+    {
+      "_id": "ObjectId(\"606d66d00263322294d5e745\")",
+      "dateDebut": "2021-04-01T15:06:21.595Z",
+      "etat": "En cours",
+      "forfaitise": [
+        {
+          "_id": "ObjectId(\"606d66d00263322294d5e746\")",
+          "libelle": "Repas midi",
+          "quantite": 0,
+          "prix": 23.5
+        },
+        {
+          "_id": "ObjectId(\"606d66d00263322294d5e747\")",
+          "libelle": "Relais étape",
+          "quantite": 0,
+          "prix": 86.9
+        },
+        {
+          "_id": "ObjectId(\"606d66d00263322294d5e748\")",
+          "libelle": "Nuité",
+          "quantite": 0,
+          "prix": 68.2
+        },
+        {
+          "_id": "ObjectId(\"606d66d00263322294d5e749\")",
+          "libelle": "Kilométrage",
+          "quantite": 0,
+          "prix": 0.27
+        }
+      ],
+      "horsforfait": [
+        {
+          "libelle": "RDV spectacle de taratata",
+          "prix": 50.9,
+          "numFacture": "0000000010",
+          "date": "2020-10-08T15:06:21.595Z"
+        },
+        {
+          "_id": "ObjectId(\"6070249c779ab63724bc33ac\")",
+          "libelle": "Bière en terrasse",
+          "prix": 6.5,
+          "numFacture": "0000000002",
+          "date": "2020-10-08T15:06:21.595Z"
+        }
+      ]
+    },
+    {
+      "_id": "ObjectId(\"606d6a730263322294d5e75a\")",
+      "dateDebut": "2020-11-01T15:06:21.595Z",
+      "etat": "En cours",
+      "forfaitise": [
+        {
+          "_id": "ObjectId(\"606d6a730263322294d5e75b\")",
+          "libelle": "Repas midi",
+          "quantite": 10,
+          "prix": 23.5
+        },
+        {
+          "_id": "ObjectId(\"606d6a730263322294d5e75c\")",
+          "libelle": "Relais étape",
+          "quantite": 9,
+          "prix": 86.9
+        },
+        {
+          "_id": "ObjectId(\"606d6a730263322294d5e75d\")",
+          "libelle": "Nuité",
+          "quantite": 9,
+          "prix": 68.2
+        },
+        {
+          "_id": "ObjectId(\"606d6a730263322294d5e75e\")",
+          "libelle": "Kilométrage",
+          "quantite": 150,
+          "prix": 0.27
+        }
+      ],
+      "horsforfait": [
+        {
+          "_id": "ObjectId(\"606d6a730263322294d5e75f\")",
+          "libelle": "RDV spectacle de magie",
+          "prix": 60,
+          "numFacture": "0000000001",
+          "date": "2020-10-05T15:06:21.595Z"
+        },
+        {
+          "_id": "ObjectId(\"606d6a730263322294d5e760\")",
+          "libelle": "Bière en terrasse",
+          "prix": 6,
+          "numFacture": "0000000002",
+          "date": "2020-10-12T15:06:21.595Z"
+        }
+      ]
+    }
+  ]
+},
