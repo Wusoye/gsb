@@ -9,6 +9,7 @@ app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
     extended: true
 }));
 
+var crypto = require('crypto');
 var moment = require('./config/moment');
 app.locals.moment = require('./config/moment');
 
@@ -42,7 +43,9 @@ client.connect(function (err) {
     passport.use(new LocalStrategy( // Fonction d'authentification
         function (username, password, done) {
             db.collection("visiteur").findOne({ login: username }, function (err, user) {
-
+                
+                password = crypto.createHash('sha256').update(password).digest('hex')
+                //console.log(password)
                 if (err) { return done(err); }
                 if (!user) {
                     return done(null, false, { message: 'Incorrect username.' });
