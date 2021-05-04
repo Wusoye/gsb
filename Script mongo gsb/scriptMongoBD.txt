@@ -59,7 +59,7 @@ db.visiteur.insert([{"_id" : ObjectId("606d66d00263322294d5e744"),
 		{
 			"_id" : ObjectId("606d6a730263322294d5e75a"),
 			"dateDebut" : ISODate("2020-11-01T16:06:21.595+01:00"),
-			"etat" : "En cours",
+			"etat" : "Clôturée",
 			"forfaitise" : [
 				{
 					"_id" : ObjectId("606d6a730263322294d5e75b"),
