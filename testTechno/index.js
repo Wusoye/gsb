@@ -37,7 +37,7 @@ app.use(passport.session());
 //-> Déclaratin des vars
 
 client.connect(function (err) {
-    const db = client.db("gsbTest");
+    const db = client.db("gsb");
     if (err) throw err;
 
     passport.use(new LocalStrategy( // Fonction d'authentification

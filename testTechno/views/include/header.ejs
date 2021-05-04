@@ -26,10 +26,29 @@
         border-color: #30c2e3;
     }
 
-    img {
-        width: 100px;
+    * {
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+
+    html {
+        height: 100%;
+    }
+
+    body {
+        position: relative;
+        min-height: 100%;
+        margin: 0;
+        padding-bottom: 5em;
+    }
+
+    footer {
+        position: absolute;
+        width: 100%;
         height: 50px;
-        align-items: center;
+        bottom: 0;
+        left: 0;
+        right: 0;
     }
 </style>
 
