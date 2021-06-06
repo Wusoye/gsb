@@ -16,6 +16,18 @@
             <a class="nav-link active" href="/historique">historique</a>
           </li>
         </ul>
+
+        <% if(user.DerniereCo) { %>
+          
+            <a><%= user.nom %> <%= user.prnom %> Date de dernière connexion: <%= moment(user.DerniereCo).format('dddd D MMMM YYYY  HH:mm') %></a>
+          
+          <% } else{ %>
+            
+              <a><%= user.nom %> <%= user.prnom %> Première Connexion</a>
+            
+          <% } %>
+        <a type="button" class="btn btn-secondary btn-sm" href="/logout">Déconnexion</a>
+        
       </div>
     </div>
   </nav>

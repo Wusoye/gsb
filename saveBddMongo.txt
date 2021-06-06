@@ -1,0 +1,221 @@
+db.visiteur.insert([
+{
+	"_id" : ObjectId("60b48e0dfb73b83ce8166f0f"),
+	"nom" : "DUPONT",
+	"prnom" : "Eric",
+	"login" : "edupont",
+	"password" : "7a7457781dd9bf0706e5334c5d30af0a4a8d461521fbd46a584a31fe8c4d9965",
+	"tel" : "06 06 06 06 06",
+	"mail" : "eric.dupont@gmail.com",
+	"adresse" : "32 rue du diapason",
+	"ville" : "Paris",
+	"cp" : "75000",
+	"DerniereCo" : "",
+	"fichedefrais" : [
+		{
+			"_id" : ObjectId("60b48e0dfb73b83ce8166f10"),
+			"dateDebut" : ISODate("2021-04-01T17:06:21.595+02:00"),
+			"etat" : "En cours",
+			"forfaitise" : [
+				{
+					"_id" : ObjectId("60b48e0dfb73b83ce8166f11"),
+					"libelle" : "Repas midi",
+					"quantite" : 0,
+					"prix" : 23.5
+				},
+				{
+					"_id" : ObjectId("60b48e0dfb73b83ce8166f12"),
+					"libelle" : "Relais étape",
+					"quantite" : 0,
+					"prix" : 86.9
+				},
+				{
+					"_id" : ObjectId("60b48e0dfb73b83ce8166f13"),
+					"libelle" : "Nuité",
+					"quantite" : 0,
+					"prix" : 68.2
+				},
+				{
+					"_id" : ObjectId("60b48e0dfb73b83ce8166f14"),
+					"libelle" : "Kilométrage",
+					"quantite" : 0,
+					"prix" : 0.27
+				}
+			],
+			"horsforfait" : [
+				{
+					"_id" : ObjectId("60b48e0dfb73b83ce8166f15"),
+					"libelle" : "RDV spectacle de taratata",
+					"prix" : 60,
+					"numFacture" : "0000000010",
+					"date" : ISODate("2020-10-10T00:00:00.000+02:00")
+				},
+				{
+					"_id" : ObjectId("60b48e0dfb73b83ce8166f16"),
+					"libelle" : "Chat",
+					"prix" : 245,
+					"numFacture" : "0000000012",
+					"date" : ISODate("2021-04-04T00:00:00.000+02:00")
+				}
+			]
+		},
+		{
+			"_id" : ObjectId("60b48e0dfb73b83ce8166f17"),
+			"dateDebut" : ISODate("2020-11-01T16:06:21.595+01:00"),
+			"etat" : "Clôturée",
+			"forfaitise" : [
+				{
+					"_id" : ObjectId("60b48e0dfb73b83ce8166f18"),
+					"libelle" : "Repas midi",
+					"quantite" : 10,
+					"prix" : 23.5
+				},
+				{
+					"_id" : ObjectId("60b48e0dfb73b83ce8166f19"),
+					"libelle" : "Relais étape",
+					"quantite" : 9,
+					"prix" : 86.9
+				},
+				{
+					"_id" : ObjectId("60b48e0dfb73b83ce8166f1a"),
+					"libelle" : "Nuité",
+					"quantite" : 9,
+					"prix" : 68.2
+				},
+				{
+					"_id" : ObjectId("60b48e0dfb73b83ce8166f1b"),
+					"libelle" : "Kilométrage",
+					"quantite" : 150,
+					"prix" : 0.27
+				}
+			],
+			"horsforfait" : [
+				{
+					"_id" : ObjectId("60b48e0dfb73b83ce8166f1c"),
+					"libelle" : "RDV spectacle de magie",
+					"prix" : 60,
+					"numFacture" : "0000000001",
+					"date" : ISODate("2020-10-05T17:06:21.595+02:00")
+				},
+				{
+					"_id" : ObjectId("60b48e0dfb73b83ce8166f1d"),
+					"libelle" : "Bière en terrasse",
+					"prix" : 6,
+					"numFacture" : "0000000002",
+					"date" : ISODate("2020-10-12T17:06:21.595+02:00")
+				}
+			]
+		}
+	]
+},
+
+{
+	"_id" : ObjectId("606d66d00263322294d5e744"),
+	"nom" : "ZEMMOUR",
+	"prnom" : "Eric",
+	"login" : "ezemmour",
+	"password" : "7a7457781dd9bf0706e5334c5d30af0a4a8d461521fbd46a584a31fe8c4d9965",
+	"tel" : "06 06 06 06 06",
+	"mail" : "eric.zemmour@gmail.com",
+	"adresse" : "32 rue du Bled",
+	"ville" : "Paris",
+	"cp" : "75000",
+	"DerniereCo" : ISODate("2021-05-31T09:29:38.034+02:00"),
+	"fichedefrais" : [
+		{
+			"_id" : ObjectId("606d66d00263322294d5e745"),
+			"dateDebut" : ISODate("2021-04-01T17:06:21.595+02:00"),
+			"etat" : "En cours",
+			"forfaitise" : [
+				{
+					"_id" : ObjectId("606d66d00263322294d5e746"),
+					"libelle" : "Repas midi",
+					"quantite" : 0,
+					"prix" : 23.5
+				},
+				{
+					"_id" : ObjectId("606d66d00263322294d5e747"),
+					"libelle" : "Relais étape",
+					"quantite" : 0,
+					"prix" : 86.9
+				},
+				{
+					"_id" : ObjectId("606d66d00263322294d5e748"),
+					"libelle" : "Nuité",
+					"quantite" : 0,
+					"prix" : 68.2
+				},
+				{
+					"_id" : ObjectId("606d66d00263322294d5e749"),
+					"libelle" : "Kilométrage",
+					"quantite" : 0,
+					"prix" : 0.27
+				}
+			],
+			"horsforfait" : [
+				{
+					"_id" : ObjectId("606d66d00263322294d5e74a"),
+					"libelle" : "RDV spectacle de taratata",
+					"prix" : 60,
+					"numFacture" : "0000000010",
+					"date" : ISODate("2020-10-10T00:00:00.000+02:00")
+				},
+				{
+					"_id" : ObjectId("607050c1a438c1185c2e7c06"),
+					"libelle" : "Chat",
+					"prix" : 245,
+					"numFacture" : "0000000012",
+					"date" : ISODate("2021-04-04T00:00:00.000+02:00")
+				}
+			]
+		},
+		{
+			"_id" : ObjectId("606d6a730263322294d5e75a"),
+			"dateDebut" : ISODate("2020-11-01T16:06:21.595+01:00"),
+			"etat" : "En cours",
+			"forfaitise" : [
+				{
+					"_id" : ObjectId("606d6a730263322294d5e75b"),
+					"libelle" : "Repas midi",
+					"quantite" : 10,
+					"prix" : 23.5
+				},
+				{
+					"_id" : ObjectId("606d6a730263322294d5e75c"),
+					"libelle" : "Relais étape",
+					"quantite" : 9,
+					"prix" : 86.9
+				},
+				{
+					"_id" : ObjectId("606d6a730263322294d5e75d"),
+					"libelle" : "Nuité",
+					"quantite" : 9,
+					"prix" : 68.2
+				},
+				{
+					"_id" : ObjectId("606d6a730263322294d5e75e"),
+					"libelle" : "Kilométrage",
+					"quantite" : 150,
+					"prix" : 0.27
+				}
+			],
+			"horsforfait" : [
+				{
+					"_id" : ObjectId("606d6a730263322294d5e75f"),
+					"libelle" : "RDV spectacle de magie",
+					"prix" : 60,
+					"numFacture" : "0000000001",
+					"date" : ISODate("2020-10-05T17:06:21.595+02:00")
+				},
+				{
+					"_id" : ObjectId("606d6a730263322294d5e760"),
+					"libelle" : "Bière en terrasse",
+					"prix" : 6,
+					"numFacture" : "0000000002",
+					"date" : ISODate("2020-10-12T17:06:21.595+02:00")
+				}
+			]
+		}
+	]
+}
+])

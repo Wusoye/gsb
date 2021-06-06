@@ -68,6 +68,10 @@ client.connect(function (err) {
 
     app.set('view engine', 'ejs');
 
+    app.get('/headerConnect', (req, res) => {
+        var User = req.session.passport.user;
+        res.render('/include/headerConnect', {user: User})
+    })
 
     app.get('/', (req, res) => {
         res.redirect('/pageConnexion')
@@ -75,6 +79,7 @@ client.connect(function (err) {
 
     app.get('/pageConnexion', (req, res) => {
         res.render('pageConnexion')
+        console.log(req.session);
     });
 
     app.post('/pageConnexion',
@@ -87,6 +92,7 @@ client.connect(function (err) {
     app.get('/pageAcceuil', (req, res) => {
 
         var User = req.session.passport.user; // pour que ce soit plus propre
+        //console.log(req.session.passport.user);
         var fichedefrais = User.fichedefrais[0]; // pour que ce soit plus propre
         res.render('pageAcceuil', {
             user: User,
@@ -98,7 +104,7 @@ client.connect(function (err) {
     app.get('/historique', (req, res) => {
         var User = req.session.passport.user;
         var fichedefrais = User.fichedefrais;
-        res.render('historique', { fichedefrais: fichedefrais })
+        res.render('historique', { fichedefrais: fichedefrais, user:User })
     })
 
     app.get('/pageDetail/:id', (req, res) => {
@@ -110,14 +116,16 @@ client.connect(function (err) {
                 res.render('pageDetail', {
                     date: unefiche.dateDebut,
                     forfaitise: unefiche.forfaitise,
-                    horsforfait: unefiche.horsforfait
+                    horsforfait: unefiche.horsforfait,
+                    user:User
                 })
             }
         });
     })
 
     app.get('/pageAddHf', (req, res) => {
-        res.render('pageAddHf')
+        var User = req.session.passport.user;
+        res.render('pageAddHf', {user:User})
     })
 
     app.post('/pageAddHf', (req, res) => {
@@ -157,7 +165,7 @@ client.connect(function (err) {
         var horsforfaits = User.fichedefrais[0].horsforfait;
         horsforfaits.forEach(function (unHorsforfaits) { // On cherche le hf sélectionner puis on récup ses infos via la session
             if (unHorsforfaits._id == req.params.id) {
-                res.render('pageModifeHf', { horsforfaits: unHorsforfaits })
+                res.render('pageModifeHf', { horsforfaits: unHorsforfaits, user:User })
             }
             //else { res.redirect('/pageAcceuil') } //Ne marche pas à voir
         })
@@ -222,6 +230,29 @@ client.connect(function (err) {
                 }
             })
     })
+
+    app.get('/logout', function(req, res){
+        var User = req.session.passport.user;
+        db.collection("visiteur").updateOne({ //On modifie le frais hf
+            "_id": ObjectId(User._id),
+        }, {
+            $set: {
+                "DerniereCo" : new Date(moment())
+            }
+        }
+            , function (err) {
+                if (err) throw err;
+                else { // On déconnecte session
+                    db.collection('visiteur').findOne({ _id: ObjectId(User._id) }, function (err, user) {
+                        if (err) throw err;
+                        req.logout();
+                        res.redirect('/');
+                    })
+                }
+            })
+        
+      });
+
 });
 
 app.listen(81, '127.0.0.2')
