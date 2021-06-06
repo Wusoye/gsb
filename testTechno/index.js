@@ -243,11 +243,8 @@ client.connect(function (err) {
             , function (err) {
                 if (err) throw err;
                 else { // On déconnecte session
-                    db.collection('visiteur').findOne({ _id: ObjectId(User._id) }, function (err, user) {
-                        if (err) throw err;
-                        req.logout();
-                        res.redirect('/');
-                    })
+                    req.logout();
+                    res.redirect('/');
                 }
             })
         
